@@ -1,0 +1,21 @@
+[global]
+workgroup =  <%= node['samba']['workgroup'] %>
+netbiosname = <%= node['machinename'] %>
+log file = /var/log/samba/log.%m
+max log size = 50
+security = user
+map to guest = Bad User
+
+<% node['samba']['shares'].each do |share| %>
+[ <%= share %> ]
+comment = NAS master
+path = <%= node['repo']['dir'] %>
+force create mode = 0755
+force user = <%= node['repo']['user'] %>
+force group = <%= node['repo']['group'] %>
+locking = yes
+guest ok = yes
+writeable = no
+write list = @users
+
+<% end %>
