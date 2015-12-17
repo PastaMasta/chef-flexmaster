@@ -31,3 +31,17 @@ default['samba']['workgroup'] = 'WORKGROUP'
 default['samba']['shares'] = [
   "#{node['repo']['name']}"
 ]
+
+# buildserver dirs and symlinks
+default['buildserver']['basedir'] = "#{default['repo']['dir']}/build"
+
+default['buildserver']['dirs'] = [
+  'chef'
+]
+default['buildserver']['symlinks'] = [
+ {'target' => 'chef/client.rb', 'to' => '/etc/chef/client.rb' }, 
+ {'target' => 'chef/initial.json', 'to' => '/etc/chef/initial.json' }, 
+ {'target' => 'chef/validation.pem', 'to' => '/etc/chef/validation.pem' }
+]
+# Kickstart repo
+default['buildserver']['kickstarts']['repo'] = "http://GitLab/chef/kickstarts.git"

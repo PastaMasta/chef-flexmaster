@@ -13,4 +13,5 @@ end
 include_recipe [
   'chef-flexmaster::fileshare',
   'chef-flexmaster::pxeboot',
+  'chef-flexmaster::buildserver',
 ]
