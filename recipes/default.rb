@@ -11,6 +11,6 @@ user node['repo']['user'] do
 end
 
 include_recipe [
-  'flexmaster::fileshare',
-  'flexmaster::pxeboot',
+  'chef-flexmaster::fileshare',
+  'chef-flexmaster::pxeboot',
 ]
