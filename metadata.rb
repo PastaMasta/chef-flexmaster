@@ -1,4 +1,4 @@
-name             'flexmaster'
+name             'chef-flexmaster'
 maintainer       'PastaMasta'
 maintainer_email 'Stephen@tandy-uk.net'
 license          'All rights reserved'
