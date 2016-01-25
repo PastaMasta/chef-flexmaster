@@ -5,6 +5,7 @@ log file = /var/log/samba/log.%m
 max log size = 50
 security = user
 map to guest = Bad User
+username map = /etc/samba/smbusers
 
 <% node['samba']['shares'].each do |share| %>
 [ <%= share %> ]
@@ -16,6 +17,6 @@ force group = <%= node['repo']['group'] %>
 locking = yes
 guest ok = yes
 writeable = no
-write list = @users
+write list = @repo
 
 <% end %>
