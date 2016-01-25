@@ -7,16 +7,12 @@
 #
 
 # nfs
-['nfs-utils','portmap'].each do |package|
-  package package do
-    action :install
-  end
+package 'nfs-utils' do
+  action :install
 end
 
-['rpcbind','nfs'].each do |service|
-  service service do
-    action [ :enable, :start ]
-  end
+service 'nfs' do
+  action [ :enable, :start ]
 end
 
 template "/etc/exports" do
