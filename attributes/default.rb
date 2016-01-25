@@ -11,7 +11,9 @@ default['repo']['dir'] = '/naspool/repo'
 
 # User / group for the repo
 default['repo']['user'] = 'repo'
+default['repo']['uid'] = '1000'
 default['repo']['group'] = 'repo'
+default['repo']['gid'] = 'repo'
 
 # Generic name of misc stuff
 default['repo']['name'] = 'repo'
