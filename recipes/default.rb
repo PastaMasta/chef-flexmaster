@@ -13,4 +13,7 @@ user node['repo']['user'] do
 end
 
 include_recipe [
+  'chef-flexmaster::fileserver',
+  'chef-flexmaster::buildserver',
+  'chef-flexmaster::misc'
 ]
