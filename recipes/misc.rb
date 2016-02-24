@@ -11,12 +11,12 @@ misc = node['misc']
 # yum repo sync and update scripts
 template "/root/repo_sync.sh" do
   source "repo_sync.sh.erb"
-  mode 0644
+  mode 0744
 end
 
 template "/root/update-repo.sh" do
   source "update-repo.sh.erb"
-  mode 0644
+  mode 0744
 end
 
 # Every other package
