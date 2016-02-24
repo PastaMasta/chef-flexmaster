@@ -47,3 +47,8 @@ default['buildserver']['symlinks'] = [
 ]
 # Kickstart repo
 default['buildserver']['kickstarts']['repo'] = "http://GitLab/chef/kickstarts.git"
+
+# Misc packages
+default['misc']['packages'] = [
+  'createrepo'
+]

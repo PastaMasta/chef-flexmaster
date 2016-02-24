@@ -6,8 +6,22 @@
 # Copyright 2015, PastaMasta
 #
 
-# yum repo sync scripts
+misc = node['misc']
+
+# yum repo sync and update scripts
 template "/root/repo_sync.sh" do
   source "repo_sync.sh.erb"
   mode 0644
+end
+
+template "/root/update-repo.sh" do
+  source "update-repo.sh.erb"
+  mode 0644
+end
+
+# Every other package
+misc['packages'].each do |package|
+  package package do
+    action :install
+  end
 end
