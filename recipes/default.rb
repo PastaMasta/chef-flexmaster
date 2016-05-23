@@ -1,6 +1,6 @@
 #
 # Author:: PastaMasta (<pasta.masta2902@gmail.com>)
-# Cookbook Name:: flexmaster
+# Cookbook Name:: chef-master
 # Recipe:: default
 #
 # Copyright 2015, PastaMasta
@@ -13,7 +13,7 @@ user node['repo']['user'] do
 end
 
 include_recipe [
-  'chef-flexmaster::fileserver',
-  'chef-flexmaster::buildserver',
-  'chef-flexmaster::misc'
+  'chef-master::fileserver',
+  'chef-master::buildserver',
+  'chef-master::misc'
 ]

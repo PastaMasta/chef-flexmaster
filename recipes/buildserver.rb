@@ -1,6 +1,6 @@
 #
 # Author:: PastaMasta (<pasta.masta2902@gmail.com>)
-# Cookbook Name:: flexmaster
+# Cookbook Name:: chef-master
 # Recipe:: buildserver
 #
 # Copyright 2015, PastaMasta
