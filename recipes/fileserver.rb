@@ -6,10 +6,13 @@
 # Copyright 2016, PastaMasta
 #
 
-=begin
 # nfs
 package 'nfs-utils' do
   action :install
+end
+
+service 'rpcbind' do
+  action [ :enable, :start ]
 end
 
 service 'nfs' do
@@ -22,6 +25,7 @@ template "/etc/exports" do
   notifies :restart, 'service[nfs]', :immediately
 end
 
+=begin
 # http
 package 'httpd' do
   action :install

@@ -7,7 +7,8 @@
 #
 
 recipes = [
-  'chef-master::layout'
+  'chef-master::layout',
+  'chef-master::fileserver'
 ]
 
 include_recipe(recipes)
