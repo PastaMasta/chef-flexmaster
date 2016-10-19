@@ -1,11 +1,12 @@
 #
 # Author:: PastaMasta (<pasta.masta2902@gmail.com>)
 # Cookbook Name:: chef-master
-# Recipe:: fileshare
+# Recipe:: fileserver
 #
-# Copyright 2015, PastaMasta
+# Copyright 2016, PastaMasta
 #
 
+=begin
 # nfs
 package 'nfs-utils' do
   action :install
@@ -35,24 +36,4 @@ template "/etc/httpd/conf.d/#{node['repo']['name']}.conf" do
   mode 0644
   notifies :restart, 'service[httpd]', :immediately
 end
-
-# Samba
-package 'samba' do
-  action :install
-end
-
-service 'smb' do
-  action [ :enable, :start ]
-end
-
-template '/etc/samba/smb.conf' do
-  source "smb.conf.erb"
-  mode 0644
-  notifies :restart, 'service[smb]', :immediately
-end
-
-template '/etc/samba/smbusers' do
-  source "smbusers.erb"
-  mode 0644
-  notifies :restart, 'service[smb]', :immediately
-end
+=end

@@ -2,7 +2,15 @@ Master Cookbook
 ======================
 
 A cookbook to setup my master / general utility server.
-It is expected prior to running that the dir in ```default['repo']['dir']``` has been setup with the required storage mount.
+It is expected prior to running that the dir in ```default['repo']['root']``` has been setup with the required storage mount.
+
+The expected layout under repo root is:
+
+backup
+repo/build
+repo/media
+repo/os
+virt
 
 ## buildserver.rb
 * Sets up kickstart dirs and clones kickstart files

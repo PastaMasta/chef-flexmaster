@@ -3,17 +3,11 @@
 # Cookbook Name:: chef-master
 # Recipe:: default
 #
-# Copyright 2015, PastaMasta
+# Copyright 2016, PastaMasta
 #
 
-user node['repo']['user'] do
-  action :create
-  uid node['repo']['uid']
-  gid node['repo']['gid']
-end
-
-include_recipe [
-  'chef-master::fileserver',
-  'chef-master::buildserver',
-  'chef-master::misc'
+recipes = [
+  'chef-master::layout'
 ]
+
+include_recipe(recipes)
