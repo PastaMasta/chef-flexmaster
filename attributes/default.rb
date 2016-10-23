@@ -19,6 +19,6 @@ default['repo']['layout'] = [
 
 # Fileserver
 default['repo']['nfs'] = [
-  "#{node['repo']['root']}/repo *(sync,fsid=0)",
-  "#{node['repo']['root']}/users *(sync,fsid=0)"
+  "#{node['repo']['root']}/repo *(sync,ro)",
+  "#{node['repo']['root']}/users *(sync,rw)"
 ]
