@@ -25,8 +25,7 @@ template "/etc/exports" do
   notifies :restart, 'service[nfs]', :immediately
 end
 
-=begin
-# http
+# Http
 package 'httpd' do
   action :install
 end
@@ -34,10 +33,3 @@ end
 service 'httpd' do
   action [ :enable, :start ]
 end
-
-template "/etc/httpd/conf.d/#{node['repo']['name']}.conf" do
-  source "httpd.conf.erb"
-  mode 0644
-  notifies :restart, 'service[httpd]', :immediately
-end
-=end
