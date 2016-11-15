@@ -1,30 +1,53 @@
-Master Cookbook
+chef-master cookbook
 ======================
 
-A cookbook to setup my master / general utility server.
-It is expected prior to running that the dir in ```default['repo']['root']``` has been setup with the required storage mount.
+Sets up a general purpose central utility server that acts as a file / media server, build server and home share server.
 
-The expected layout under repo root is:
+## chef-master::layout
 
-backup
-repo/build
-repo/media
-repo/os
-virt
+Sets up the general layout where `node['repo']['root']` is the mountpoint of the storage backend - ZFS btrfs, one big disk etc.
 
-## buildserver.rb
-* Sets up kickstart dirs and clones kickstart files
-* Sets up a pxeboot server with tftp via xinetd
+```
+node['repo']['root']
+│
+├── backup
+│   ├── local
+│   └── remote
+├── repo
+│   ├── build
+│   │   └── kickstarts
+│   ├── media
+│   │   ├── movies
+│   │   ├── music
+│   │   ├── picture
+│   │   └── shows
+│   ├── mrepo
+│   └── os
+├── users
+└── virt
+```
+### Backup
+- local - Backups of devices on the local lan
+- remote - local mirrors of remote backups (Github repos etc)
 
-## fileserver.rb
-* Sets up NFS of the whole repo dir
-* Sets up HTTP sharing of the repo
-* Sets up Samba sharing of the repo
+### repo
+Everything under repo is shared out on read only NFS and HTTP
+- build - kickstarts and support scripts for building VMs
+- media - local media
+- mrepo - local mirrors of OS repos for anything built localy
+- os - misc os files, ISOs random software etc
 
-## misc.rb
-* Sets up the CentOS mirror sync
-* Installs createrepo
+### Users
+- User homeshares, shared out over basic NFS
+
+## chef-master::fileserver
+## chef-master::mrepo
+## chef-master::buildserver
+
+Dependencies
+-------------------
 
 License and Authors
 -------------------
-Authors: PastaMasta
+Authors: PastaMasta  
+See [LICENSE](LICENSE.md) for license rights and limitations (GNU GPLv3).
