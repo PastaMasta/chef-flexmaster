@@ -10,9 +10,16 @@
 default['repo']['root'] = '/data'
 default['repo']['layout'] = [
   'backup',
+  'backup/local',
+  'backup/remote',
   'users',
+  'repo',
   'repo/build',
   'repo/media',
+  'repo/media/movies',
+  'repo/media/music',
+  'repo/media/picture',
+  'repo/media/shows',
   'repo/mrepo',
   'repo/os',
   'virt'
