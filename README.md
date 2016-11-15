@@ -31,7 +31,7 @@ node['repo']['root']
 - remote - local mirrors of remote backups (Github repos etc)
 
 ### repo
-Everything under repo is shared out on read only NFS and HTTP
+Everything under repo is shared out on read only NFS and HTTP, if this server has a cname to 'repo' repo is the doccument root.
 - build - kickstarts and support scripts for building VMs
 - media - local media
 - mrepo - local mirrors of OS repos for anything built localy

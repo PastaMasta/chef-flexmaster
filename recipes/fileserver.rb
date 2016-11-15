@@ -30,6 +30,21 @@ package 'httpd' do
   action :install
 end
 
+link '/var/www/repo' do
+  action :create
+  to "#{node['repo']['root']}/repo"
+end
+
+file '/etc/httpd/conf.d/welcome.conf' do
+  action :delete
+end
+
 service 'httpd' do
   action [ :enable, :start ]
+end
+
+template "/etc/httpd/conf.d/repo.conf" do
+  source "repo.conf.erb"
+  mode 0644
+  notifies :restart, 'service[httpd]', :immediately
 end
