@@ -41,8 +41,13 @@ Everything under repo is shared out on read only NFS and HTTP
 - User homeshares, shared out over basic NFS
 
 ## chef-master::fileserver
+- Shares out repo over http and sets up nfs exports
+
 ## chef-master::mrepo
+- Sets up mrepo to mirror Centos 6
+
 ## chef-master::buildserver
+- Sets up pxe / tftpboot for building new servers
 
 Dependencies
 -------------------
