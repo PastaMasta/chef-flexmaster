@@ -13,6 +13,8 @@ node['repo']['root']
 ├── backup
 │   ├── local
 │   └── remote
+├── docs
+├── lost+found
 ├── repo
 │   ├── build
 │   │   └── kickstarts
@@ -22,13 +24,17 @@ node['repo']['root']
 │   │   ├── picture
 │   │   └── shows
 │   ├── mrepo
+│   │   └── centos6-x86_64
 │   └── os
 ├── users
 └── virt
 ```
-### Backup
+### backup
 - local - Backups of devices on the local lan
 - remote - local mirrors of remote backups (Github repos etc)
+
+### docs
+- Common doccument share between desktops
 
 ### repo
 Everything under repo is shared out on read only NFS and HTTP, if this server has a cname to 'repo' repo is the doccument root.
@@ -37,8 +43,11 @@ Everything under repo is shared out on read only NFS and HTTP, if this server ha
 - mrepo - local mirrors of OS repos for anything built localy
 - os - misc os files, ISOs random software etc
 
-### Users
+### users
 - User homeshares, shared out over basic NFS
+
+### virt
+- Storage pool for KVM
 
 ## chef-master::fileserver
 - Shares out repo over http and sets up nfs exports

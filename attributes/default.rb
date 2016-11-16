@@ -12,7 +12,7 @@ default['repo']['layout'] = [
   'backup',
   'backup/local',
   'backup/remote',
-  'users',
+  'docs',
   'repo',
   'repo/build',
   'repo/media',
@@ -22,6 +22,7 @@ default['repo']['layout'] = [
   'repo/media/shows',
   'repo/mrepo',
   'repo/os',
+  'users',
   'virt'
 ]
 
