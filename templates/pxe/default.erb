@@ -20,11 +20,6 @@ LABEL diagnostics
 	APPEND pxelinux.cfg/diag
 
 LABEL other
-	MENU LABEL ^Recovery
-	KERNEL menu.c32
-	APPEND pxelinux.cfg/recovery
-
-LABEL other
 	MENU LABEL ^Other
 	KERNEL menu.c32
 	APPEND pxelinux.cfg/other
