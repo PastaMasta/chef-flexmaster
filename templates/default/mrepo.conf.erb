@@ -4,8 +4,6 @@
 srcdir = <%= node['repo']['mrepo']['srcdir']%>
 wwwdir = /var/www/mrepo
 confdir = /etc/mrepo.conf.d
-arch = i386 
-
-mailto = root@localhost
+arch = x86_64
 smtp-server = localhost
-
+rsync-options = -aSPm --include-from=/etc/mrepo.rsync.include

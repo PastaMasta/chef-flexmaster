@@ -29,3 +29,8 @@ template '/etc/mrepo.conf.d/centos.conf' do
   action :create
   source 'mrepo.conf.d.centos.erb'
 end
+
+template '/etc/mrepo.rsync.include' do
+  action :create
+  source 'mrepo.rsync.include.erb'
+end
