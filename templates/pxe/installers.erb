@@ -1,0 +1,16 @@
+MENU TITLE Installation menu
+
+LABEL Main Menu
+     MENU LABEL ^Main Menu
+     Kernel menu.c32
+     APPEND pxelinux.cfg/default
+
+LABEL install_64bit
+    MENU LABEL ^CentOS 6 (64-bit) Install
+    KERNEL bootimages/installers/CentOS_6_x86/vmlinuz
+    APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_6.ks initrd=bootimages/installers/CentOS_6_x86/initrd.img ramdisk_size=100000
+
+LABEL install_64bit_Chef
+    MENU LABEL CentOS 6 (64-bit) Install with Che^f
+    KERNEL bootimages/installers/CentOS_6_x86/vmlinuz
+    APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_6_chef.ks initrd=bootimages/installers/CentOS_6_x86/initrd.img ramdisk_size=100000

@@ -1,0 +1,10 @@
+MENU TITLE Diagnostics menu
+
+LABEL Main Menu
+     MENU LABEL ^Main Menu
+     Kernel menu.c32
+     APPEND pxelinux.cfg/default
+
+LABEL memtest x86 v4.10
+     MENU LABEL Memory ^Test: Memtest86+ v4.10 
+     KERNEL bootimages/diag/memtest

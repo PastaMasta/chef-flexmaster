@@ -1,0 +1,11 @@
+MENU TITLE Other pxeboot items
+
+LABEL Main Menu
+     MENU LABEL ^Main Menu
+     Kernel menu.c32
+     APPEND pxelinux.cfg/default
+
+LABEL dban
+     MENU LABEL Boot 'n ^Nuke (DBAN 2.2.7)
+     KERNEL bootimages/other/DBAN.BZI
+     APPEND initrd bootimages/DBAN.BZI root=/dev/ram0 init=rc nuke="dwipe"
