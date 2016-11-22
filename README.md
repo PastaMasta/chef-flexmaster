@@ -58,6 +58,10 @@ Everything under repo is shared out on read only NFS and HTTP, if this server ha
 ## chef-master::buildserver
 - Sets up pxe / tftpboot for building new servers
 
+## chef-master::kvm
+- Installs kvm and virt-manager
+- Sets up the `virt` dir as a storage pool
+
 Dependencies
 -------------------
 

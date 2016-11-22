@@ -23,7 +23,8 @@ default['repo']['layout'] = [
   'repo/mrepo',
   'repo/os',
   'users',
-  'virt'
+  'virt',
+  'virt/storage'
 ]
 
 # Fileserver
@@ -36,3 +37,12 @@ default['repo']['nfs'] = [
 default['repo']['mrepo'] = {
   'srcdir' => "#{node['repo']['root']}/repo/mrepo"
 }
+
+# KVM
+default['repo']['kvm']['storage'] = [
+
+  { 'name' => 'virt',
+    'path' => File.join(node['repo']['root'],'virt/storage')
+  }
+
+]
