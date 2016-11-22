@@ -9,12 +9,10 @@ Sets up the general layout where `node['repo']['root']` is the mountpoint of the
 
 ```
 node['repo']['root']
-│
 ├── backup
 │   ├── local
 │   └── remote
 ├── docs
-├── lost+found
 ├── repo
 │   ├── build
 │   │   └── kickstarts
@@ -24,10 +22,12 @@ node['repo']['root']
 │   │   ├── picture
 │   │   └── shows
 │   ├── mrepo
-│   │   └── centos6-x86_64
+│   │   ├── centos6-x86_64
+│   │   └── localmisc-x86_64
 │   └── os
 ├── users
 └── virt
+    └── storage
 ```
 ### backup
 - local - Backups of devices on the local lan
