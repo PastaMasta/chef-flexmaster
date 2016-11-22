@@ -4,19 +4,14 @@ release = 6
 arch = x86_64
 metadata = repomd yum repoview
 
-### ISO images
-#iso = rsync://rsync.mirrorservice.org/mirror.centos.org/$release/isos/$arch/CentOS-$release-$arch-bin?of4.iso
-
+# Main OS repos
 os = rsync://rsync.mirrorservice.org/mirror.centos.org/$release/os/$arch/
-
-### Additional repositories
-
 updates = rsync://rsync.mirrorservice.org/mirror.centos.org/$release/updates/$arch/
 
-#fasttrack = http://mirror.centos.org/centos/$release/fasttrack/$arch/
+# fasttrack = http://mirror.centos.org/centos/$release/fasttrack/$arch/
+# centosplus = http://mirror.centos.org/centos/$release/centosplus/$arch/
+# extras = http://mirror.centos.org/centos/$release/extras/$arch/
+# addons = http://mirror.centos.org/centos/$release/addons/$arch/
 
-#centosplus = http://mirror.centos.org/centos/$release/centosplus/$arch/
-
-#extras = http://mirror.centos.org/centos/$release/extras/$arch/
-
-#addons = http://mirror.centos.org/centos/$release/addons/$arch/
+# Manual local custom rpms
+misc =
