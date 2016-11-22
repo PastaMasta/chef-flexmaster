@@ -34,3 +34,8 @@ template '/etc/mrepo.rsync.include' do
   action :create
   source 'mrepo.rsync.include.erb'
 end
+
+template '/etc/cron.d/mrepo' do
+  action :create
+  source 'mrepo.cron.erb'
+end
