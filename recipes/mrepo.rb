@@ -25,7 +25,7 @@ template '/etc/mrepo.conf' do
   source 'mrepo/mrepo.conf.erb'
 end
 
-template '/etc/mrepo-rsync-include' do
+template '/etc/mrepo-rsync.include' do
   action :create
   source 'mrepo/rsync.include.erb'
 end
