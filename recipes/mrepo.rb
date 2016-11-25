@@ -22,20 +22,29 @@ end
 
 template '/etc/mrepo.conf' do
   action :create
-  source 'mrepo.conf.erb'
+  source 'mrepo/mrepo.conf.erb'
 end
 
-template '/etc/mrepo.conf.d/centos.conf' do
+template '/etc/mrepo-rsync-include' do
   action :create
-  source 'mrepo.conf.d.centos.erb'
-end
-
-template '/etc/mrepo.rsync.include' do
-  action :create
-  source 'mrepo.rsync.include.erb'
+  source 'mrepo/rsync.include.erb'
 end
 
 template '/etc/cron.d/mrepo' do
   action :create
-  source 'mrepo.cron.erb'
+  source 'mrepo/cron.erb'
+end
+
+# Repo configs
+repos = [ 
+  'centos6-x86_64.conf',
+  'centos7-x86_64.conf',
+  'lab-custom.conf'
+]
+
+repos.each do |repo|
+    template "/etc/mrepo.conf.d/#{repo}" do
+      action :create
+      source "mrpeo/#{repo}.erb"
+    end
 end
