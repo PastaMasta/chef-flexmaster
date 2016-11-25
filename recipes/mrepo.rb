@@ -45,6 +45,6 @@ repos = [
 repos.each do |repo|
     template "/etc/mrepo.conf.d/#{repo}" do
       action :create
-      source "mrpeo/#{repo}.erb"
+      source "mrepo/#{repo}.erb"
     end
 end
