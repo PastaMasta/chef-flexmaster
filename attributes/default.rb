@@ -20,7 +20,6 @@ default['repo']['layout'] = [
   'repo/media/music',
   'repo/media/picture',
   'repo/media/shows',
-  'repo/mrepo',
   'repo/os',
   'repo/Software',
   'users',
@@ -33,11 +32,6 @@ default['repo']['nfs'] = [
   "#{node['repo']['root']}/repo *(sync,ro)",
   "#{node['repo']['root']}/users *(sync,rw)"
 ]
-
-# Mrepo
-default['repo']['mrepo'] = {
-  'srcdir' => "#{node['repo']['root']}/repo/mrepo"
-}
 
 # KVM
 default['repo']['kvm']['storage'] = [
