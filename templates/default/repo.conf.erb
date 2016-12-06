@@ -4,11 +4,13 @@
   <Directory />
     Options Indexes FollowSymlinks
     IndexOptions NameWidth=* DescriptionWidth=*
+    AllowOverride None
   </Directory>
 
   <Directory /var/www/repo>
     Options Indexes FollowSymlinks SymLinksifOwnerMatch IncludesNOEXEC
     IndexOptions NameWidth=* DescriptionWidth=*
+    AllowOverride None
   </Directory>
 
 </VirtualHost>
