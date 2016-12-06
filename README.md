@@ -9,25 +9,24 @@ Sets up the general layout where `node['repo']['root']` is the mountpoint of the
 
 ```
 node['repo']['root']
-├── backup
-│   ├── local
-│   └── remote
-├── docs
-├── repo
-│   ├── build
-│   │   └── kickstarts
-│   ├── media
-│   │   ├── movies
-│   │   ├── music
-│   │   ├── picture
-│   │   └── shows
-│   ├── mrepo
-│   │   ├── centos6-x86_64
-│   │   └── localmisc-x86_64
-│   └── os
-├── users
-└── virt
-    └── storage
+|-- backup
+|   |-- local
+|   `-- remote
+|-- docs
+|-- repo
+|   |-- build
+|   |   `-- kickstarts
+|   |-- media
+|   |   |-- movies
+|   |   |-- music
+|   |   |-- picture
+|   |   `-- shows
+|   |-- os
+|   |   `-- CentOS
+|   `-- Software
+|-- users
+`-- virt
+    `-- storage
 ```
 ### backup
 - local - Backups of devices on the local lan
@@ -40,8 +39,8 @@ node['repo']['root']
 Everything under repo is shared out on read only NFS and HTTP, if this server has a cname to 'repo' repo is the doccument root.
 - build - kickstarts and support scripts for building VMs
 - media - local media
-- mrepo - local mirrors of OS repos for anything built localy
-- os - misc os files, ISOs random software etc
+- os - OS mirros and misc isos etc
+- Software - random non-rsynced software
 
 ### users
 - User homeshares, shared out over basic NFS
@@ -51,9 +50,6 @@ Everything under repo is shared out on read only NFS and HTTP, if this server ha
 
 ## chef-master::fileserver
 - Shares out repo over http and sets up nfs exports
-
-## chef-master::mrepo
-- Sets up mrepo to mirror Centos 6
 
 ## chef-master::buildserver
 - Sets up pxe / tftpboot for building new servers
