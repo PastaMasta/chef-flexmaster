@@ -33,11 +33,20 @@ default['repo']['nfs'] = [
   "#{node['repo']['root']}/users *(sync,rw)"
 ]
 
+# tftp images
+default['repo']['bootimages'] = [
+  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/isolinux/memtest",
+    'target' => '/var/lib/tftpboot/bootimages/diag/memtest' },
+
+  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/vmlinuz",
+    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/vmlinuz' },
+
+  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/initrd.img",
+    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/initrd.img' }
+]
+
 # KVM
 default['repo']['kvm']['storage'] = [
-
   { 'name' => 'virt',
-    'path' => File.join(node['repo']['root'],'virt/storage')
-  }
-
+    'path' => File.join(node['repo']['root'],'virt/storage') }
 ]

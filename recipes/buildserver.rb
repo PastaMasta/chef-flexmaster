@@ -66,19 +66,8 @@ end
   end
 end
 
-# Copy in images from mrepo if they exist (mrepo may not have run yet)
-[
-
-  { 'source' => '/data/repo/mrepo/centos6-x86_64/os/isolinux/memtest',
-    'target' => '/var/lib/tftpboot/bootimages/diag/memtest' },
-
-  { 'source' => '/data/repo/mrepo/centos6-x86_64/os/images/pxeboot/vmlinuz',
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/vmlinuz' },
-
-  { 'source' => '/data/repo/mrepo/centos6-x86_64/os/images/pxeboot/initrd.img',
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/initrd.img' }
-
-].each do |bootimage|
+# Copy in images from mrepo if they exist (rsync may not have run yet)
+node['repo']['bootimages'].each do |bootimage|
   remote_file bootimage['target'] do
     source 'file://' + bootimage['source']
     action :create
