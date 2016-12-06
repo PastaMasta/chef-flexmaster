@@ -35,6 +35,11 @@ link '/var/www/repo' do
   to "#{node['repo']['root']}/repo"
 end
 
+link '/var/www/html/repo' do
+  action :create
+  to "/var/www/repo"
+end
+
 file '/etc/httpd/conf.d/welcome.conf' do
   action :delete
 end
