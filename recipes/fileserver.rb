@@ -15,14 +15,14 @@ service 'rpcbind' do
   action [ :enable, :start ]
 end
 
-service 'nfs' do
+service 'nfs-server' do
   action [ :enable, :start ]
 end
 
 template "/etc/exports" do
   source "exports.erb"
   mode 0644
-  notifies :restart, 'service[nfs]', :immediately
+  notifies :restart, 'service[nfs-server]', :immediately
 end
 
 # Http

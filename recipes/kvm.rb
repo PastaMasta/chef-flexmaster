@@ -10,7 +10,7 @@
 packages = [
   'kvm',
   'libvirt',
-  'python-virtinst',
+  'virt-install',
   'qemu-kvm',
   'bridge-utils',
   'virt-manager'
