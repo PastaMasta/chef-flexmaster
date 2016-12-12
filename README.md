@@ -23,7 +23,7 @@ node['repo']['root']
 |   |   `-- shows
 |   |-- os
 |   |   `-- CentOS
-|   `-- Software
+|   `-- software
 |-- users
 `-- virt
     `-- storage

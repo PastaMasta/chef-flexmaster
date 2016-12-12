@@ -21,7 +21,7 @@ default['repo']['layout'] = [
   'repo/media/picture',
   'repo/media/shows',
   'repo/os',
-  'repo/Software',
+  'repo/software',
   'users',
   'virt',
   'virt/storage'
