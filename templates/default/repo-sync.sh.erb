@@ -1,0 +1,21 @@
+#! /bin/bash
+
+#
+# Simple script to sync up remote repos and to
+# refresh the local misc software cache
+#
+
+exclude_file='/root/repo-sync.exclude'
+
+centos6_remote="rsync://rsync.mirrorservice.org/mirror.centos.org/6*"
+centos6_local="<%=node['repo']['root']%>/repo/os/CentOS/"
+rsync -aSPvm --include='6**/' --include='7**/' --progress --safe-links --delete --exclude-from=${exclude_file} ${centos6_remote} ${centos6_local}
+
+centos7_remote="rsync://rsync.mirrorservice.org/mirror.centos.org/7*"
+centos7_local="<%=node['repo']['root']%>/repo/os/CentOS/"
+rsync -aSPvm --include='7**/' --progress --safe-links --delete --exclude-from=${exclude_file} ${centos7_remote} ${centos7_local}
+
+repodir="<%=node['repo']['root']%>/repo/os/software"
+createrepo --update ${repodir}
+
+exit $?

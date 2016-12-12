@@ -10,7 +10,8 @@ recipes = [
   'chef-master::layout',
   'chef-master::fileserver',
   'chef-master::buildserver',
-  'chef-master::kvm'
+  'chef-master::kvm',
+  'chef-master::misc'
 ]
 
 include_recipe(recipes)

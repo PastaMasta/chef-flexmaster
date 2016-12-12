@@ -1,7 +1,7 @@
 #
 # Author:: PastaMasta (<pasta.masta2902@gmail.com>)
 # Cookbook Name:: chef-master
-# Recipe:: misc
+# Recipe:: kvm
 #
 # Copyright 2016, PastaMasta
 #
