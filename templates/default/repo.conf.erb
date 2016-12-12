@@ -1,11 +1,17 @@
-<VirtualHost repo:80>
-  DocumentRoot /var/www/repo
+<VirtualHost *:80>
+  DocumentRoot /var/www/html
 
   <Directory />
     Options Indexes FollowSymlinks
     IndexOptions NameWidth=* DescriptionWidth=*
     AllowOverride None
   </Directory>
+
+</VirtualHost>
+
+<VirtualHost *:80>
+  DocumentRoot /var/www/repo
+  ServerAlias repo
 
   <Directory /var/www/repo>
     Options Indexes FollowSymlinks SymLinksifOwnerMatch IncludesNOEXEC
