@@ -15,7 +15,9 @@ centos7_remote="rsync://rsync.mirrorservice.org/mirror.centos.org/7*"
 centos7_local="<%=node['repo']['root']%>/repo/os/CentOS/"
 rsync -aSPvm --include='7**/' --progress --safe-links --delete --exclude-from=${exclude_file} ${centos7_remote} ${centos7_local}
 
-repodir="<%=node['repo']['root']%>/repo/os/software"
+repodir="<%=node['repo']['root']%>/repo/software"
 createrepo --update ${repodir}
+
+hardlink -c "<%=node['repo']['root']%>/repo/os/CentOS"
 
 exit $?

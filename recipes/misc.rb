@@ -18,3 +18,7 @@ end
 template "/root/repo-sync.sh" do
   source "repo-sync.sh.erb"
 end
+
+template "/etc/cron.d/repo-sync" do
+  source "repo-sync.cron"
+end

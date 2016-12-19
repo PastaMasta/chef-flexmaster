@@ -1,0 +1,1 @@
+0 0 * * * /root/repo-sync.sh >/dev/null 2>&1
