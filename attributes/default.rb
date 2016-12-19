@@ -42,7 +42,13 @@ default['repo']['bootimages'] = [
     'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/vmlinuz' },
 
   { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/initrd.img",
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/initrd.img' }
+    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/initrd.img' },
+
+  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/vmlinuz",
+    'target' => '/var/lib/tftpboot/bootimages/installers/centos7-x86_64/vmlinuz' },
+
+  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/initrd.img",
+    'target' => '/var/lib/tftpboot/bootimages/installers/centos7-x86_64/initrd.img' }
 ]
 
 # KVM

@@ -5,12 +5,23 @@ LABEL Main Menu
      Kernel menu.c32
      APPEND pxelinux.cfg/default
 
-LABEL install_64bit
-    MENU LABEL ^CentOS 6 (64-bit) Install
+LABEL install_centos7_chef
+    MENU LABEL CentOS 7 (64-bit) Install with Che^f
+    KERNEL bootimages/installers/centos7-x86_64/vmlinuz
+    APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_7_chef.ks initrd=bootimages/installers/centos7-x86_64/initrd.img ramdisk_size=100000
+
+LABEL install_centos7
+    MENU LABEL ^CentOS 7 (64-bit) Install
+    KERNEL bootimages/installers/centos7-x86_64/vmlinuz
+    APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_7.ks initrd=bootimages/installers/centos7-x86_64/initrd.img ramdisk_size=100000
+
+LABEL install_centos6_chef
+    MENU LABEL CentOS 6 (64-bit) Install with Chef
+    KERNEL bootimages/installers/centos6-x86_64/vmlinuz
+    APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_6_chef.ks initrd=bootimages/installers/centos6-x86_64/initrd.img ramdisk_size=100000
+
+LABEL install_centos6
+    MENU LABEL CentOS 6 (64-bit) Install
     KERNEL bootimages/installers/centos6-x86_64/vmlinuz
     APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_6.ks initrd=bootimages/installers/centos6-x86_64/initrd.img ramdisk_size=100000
 
-LABEL install_64bit_Chef
-    MENU LABEL CentOS 6 (64-bit) Install with Che^f
-    KERNEL bootimages/installers/centos6-x86_64/vmlinuz
-    APPEND ks=http://repo/build/kickstarts/x86_64/CentOS_6_chef.ks initrd=bootimages/installers/centos6-x86_64/initrd.img ramdisk_size=100000
