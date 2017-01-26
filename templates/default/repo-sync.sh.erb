@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 
 #
 # Simple script to sync up remote repos and to
@@ -19,5 +19,10 @@ repodir="<%=node['repo']['root']%>/repo/software"
 createrepo --update ${repodir}
 
 hardlink -c "<%=node['repo']['root']%>/repo/os/CentOS"
+
+# Find all isos and symlink
+cd "<%=node['repo']['root']%>/repo/isos"
+find "<%=node['repo']['root']%>/repo/isos" -type l -exec test ! -e {} \; -delete
+find "<%=node['repo']['root']%>/repo/os" -name "*.iso" -type f -exec ln -s {} \;
 
 exit $?
