@@ -22,3 +22,17 @@ end
 template "/etc/cron.d/repo-sync" do
   source "repo-sync.cron"
 end
+
+# repo user / group
+user = node['repo']['user']
+
+group user['name'] do
+  action :create
+  gid user['gid']
+end
+
+user user['name'] do
+  action :create
+  uid user['uid']
+  gid user['gid']
+end

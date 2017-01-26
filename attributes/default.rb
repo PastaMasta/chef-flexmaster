@@ -6,6 +6,13 @@
 # Copyright 2016, PastaMasta
 #
 
+# User to own repo files
+default['repo']['user'] = {
+  'name' => 'repo',
+  'uid' => '500',
+  'gid' => '500'
+}
+
 # Layout basics
 default['repo']['root'] = '/data'
 default['repo']['layout'] = [
