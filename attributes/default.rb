@@ -9,8 +9,8 @@
 # User to own repo files
 default['repo']['user'] = {
   'name' => 'repo',
-  'uid' => '500',
-  'gid' => '500'
+  'uid' => 500,
+  'gid' => 500
 }
 
 # Layout basics
