@@ -28,8 +28,8 @@ default['repo']['layout'] = [
   'repo/media/picture',
   'repo/media/shows',
   'repo/os',
+  'repo/os/isos',
   'repo/software',
-  'repo/isos',
   'users',
   'virt',
   'virt/storage'
