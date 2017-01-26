@@ -25,4 +25,6 @@ cd "<%=node['repo']['root']%>/repo/isos"
 find "<%=node['repo']['root']%>/repo/isos" -type l -exec test ! -e {} \; -delete
 find "<%=node['repo']['root']%>/repo/os" -name "*.iso" -type f -exec ln -s {} \;
 
+chown -h -R <%=node['repo']['user']['name'] + ':' + node['repo']['user']['name']%> <%=node['repo']['root']%>/repo
+
 exit $?
