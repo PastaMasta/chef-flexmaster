@@ -18,8 +18,6 @@ rsync -aSPvm --include='7**/' --progress --safe-links --delete --exclude-from=${
 repodir="<%=node['repo']['root']%>/repo/software"
 createrepo --update ${repodir}
 
-hardlink -c "<%=node['repo']['root']%>/repo/os/CentOS"
-
 # Find all isos and symlink
 cd "<%=node['repo']['root']%>/repo/isos"
 find "<%=node['repo']['root']%>/repo/isos" -type l -exec test ! -e {} \; -delete
