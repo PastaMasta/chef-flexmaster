@@ -7,9 +7,9 @@
 #
 
 # Grab kickstarts
-git "#{node['repo']['root']}/repo/build/kickstarts" do
+git "#{node['repo']['root']}/repo/build/pxe-builds" do
   action :sync
-  repository "https://github.com/PastaMasta/kickstarts.git"
+  repository "https://github.com/PastaMasta/pxe-builds.git"
 end
 
 # Setup tftp / pxeboot
