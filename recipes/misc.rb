@@ -36,12 +36,3 @@ user user['name'] do
   uid user['uid']
   gid user['gid']
 end
-
-#
-# Everything else
-#
-
-template "/root/export-backup.sh" do
-  source "export-backup.sh.erb"
-  mode 0544
-end
