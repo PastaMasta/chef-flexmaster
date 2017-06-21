@@ -4,4 +4,6 @@ maintainer_email 'Stephen@tandy-uk.net'
 license          'All rights reserved'
 description      'Standard lab utility server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.0'
+version          '0.3.0'
+
+depends 'chef-base-dev', '~> 0.4.0'

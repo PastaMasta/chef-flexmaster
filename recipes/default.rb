@@ -7,11 +7,7 @@
 #
 
 recipes = [
-  'chef-master::layout',
-  'chef-master::fileserver',
-  'chef-master::buildserver',
-  'chef-master::kvm',
-  'chef-master::misc'
+  'chef-base-dev::default'
 ]
 
 include_recipe(recipes)

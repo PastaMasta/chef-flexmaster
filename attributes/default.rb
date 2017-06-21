@@ -3,7 +3,7 @@
 # Cookbook Name:: chef-master
 # Attribue:: default
 #
-# Copyright 2016, PastaMasta
+# Copyright 2017, PastaMasta
 #
 
 # User to own repo files
@@ -14,8 +14,8 @@ default['repo']['user'] = {
 }
 
 # Layout basics
-default['repo']['root'] = '/data'
-default['repo']['layout'] = [
+override['data']['root'] = '/data'
+override['data']['layout'] = [
   'backup',
   'backup/local',
   'backup/remote',
