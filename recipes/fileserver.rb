@@ -3,14 +3,13 @@
 # Cookbook Name:: chef-master
 # Recipe:: fileserver
 #
-# Copyright 2016, PastaMasta
+# Copyright 2017, PastaMasta
 #
 
 # nfs
-package 'nfs-utils' do
-  action :install
-end
+package 'nfs-utils'
 
+=begin
 service 'rpcbind' do
   action [ :enable, :start ]
 end
@@ -24,15 +23,14 @@ template "/etc/exports" do
   mode 0644
   notifies :restart, 'service[nfs-server]', :immediately
 end
+=end
 
 # Http
-package 'httpd' do
-  action :install
-end
+package 'httpd'
 
 link '/var/www/repo' do
   action :create
-  to "#{node['repo']['root']}/repo"
+  to "#{node['data']['root']}/repo"
 end
 
 link '/var/www/html/repo' do
@@ -49,7 +47,9 @@ service 'httpd' do
 end
 
 template "/etc/httpd/conf.d/repo.conf" do
-  source "repo.conf.erb"
+  source "httpd/repo.conf.erb"
   mode 0644
   notifies :restart, 'service[httpd]', :immediately
 end
+
+# SELinux

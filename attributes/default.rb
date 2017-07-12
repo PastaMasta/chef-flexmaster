@@ -6,12 +6,6 @@
 # Copyright 2017, PastaMasta
 #
 
-# User to own repo files
-default['repo']['user'] = {
-  'name' => 'repo',
-  'uid' => 500,
-  'gid' => 500
-}
 
 # Layout basics
 override['data']['root'] = '/data'
@@ -34,6 +28,14 @@ override['data']['layout'] = [
   'virt',
   'virt/storage'
 ]
+=begin
+
+# User to own repo files
+default['repo']['user'] = {
+  'name' => 'repo',
+  'uid' => 500,
+  'gid' => 500
+}
 
 # Fileserver
 default['repo']['nfs'] = [
@@ -64,3 +66,4 @@ default['repo']['kvm']['storage'] = [
   { 'name' => 'virt',
     'path' => File.join(node['repo']['root'],'virt/storage') }
 ]
+=end
