@@ -13,10 +13,20 @@ service 'nfs-server' do
   action [ :enable, :start ]
 end
 
+# Only export to nodes running KVM
+kvm_hosts = []
+search(:node, 'recipes:"chef-base-dev\:\:kvm"').each do |host|
+  next if host.name == node['master']
+  kvm_hosts.push("#{host.name}(sync,rw,sec=sys)")
+end
+
 template "/etc/exports" do
   source "etc/exports.erb"
   mode 0644
   notifies :restart, 'service[nfs-server]', :immediately
+  variables ({
+    :kvm_hosts => kvm_hosts.join(" ").strip
+  })
 end
 
 # Http
