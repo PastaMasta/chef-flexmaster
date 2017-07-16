@@ -11,7 +11,8 @@ return unless "#{node['platform']} #{node['platform_version']}".match(/centos 7/
 recipes = [
   'chef-base-dev::default',
   cookbook_name + '::fileserver',
-  cookbook_name + '::firewall'
+  cookbook_name + '::firewall',
+  'chef-base-dev::kvm'
 ]
 
 include_recipe(recipes)

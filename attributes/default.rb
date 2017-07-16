@@ -24,9 +24,7 @@ override['data']['layout'] = [
   'repo/os',
   'repo/os/isos',
   'repo/software',
-  'users',
-  'virt',
-  'virt/storage'
+  'users'
 ]
 =begin
 
