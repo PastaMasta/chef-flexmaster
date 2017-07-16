@@ -37,11 +37,6 @@ default['repo']['user'] = {
   'gid' => 500
 }
 
-# Fileserver
-default['repo']['nfs'] = [
-  "#{node['repo']['root']}/repo *(sync,ro)",
-  "#{node['repo']['root']}/users *(sync,rw)"
-]
 
 # tftp images
 default['repo']['bootimages'] = [

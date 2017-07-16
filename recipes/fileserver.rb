@@ -9,21 +9,15 @@
 # nfs
 package 'nfs-utils'
 
-=begin
-service 'rpcbind' do
-  action [ :enable, :start ]
-end
-
 service 'nfs-server' do
   action [ :enable, :start ]
 end
 
 template "/etc/exports" do
-  source "exports.erb"
+  source "etc/exports.erb"
   mode 0644
   notifies :restart, 'service[nfs-server]', :immediately
 end
-=end
 
 # Http
 package 'httpd'
