@@ -28,37 +28,33 @@ override['data']['layout'] = [
 ]
 default['repo']['repo_user'] = 'repo'
 default['repo']['docs_user'] = 'sbt'
-=begin
 
-# User to own repo files
-default['repo']['user'] = {
-  'name' => 'repo',
-  'uid' => 500,
-  'gid' => 500
-}
-
-
-# tftp images
+# Build server kickstarts
+default['repo']['pxebuild']['git'] = 'https://github.com/PastaMasta/pxe-builds.git'
+# tftp bootimages
+default['repo']['bootimage_dirs'] = %w(
+  diag
+  installers
+  installers/centos7-x86_64
+  installers/centos6-x86_64
+  other
+)
 default['repo']['bootimages'] = [
-  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/isolinux/memtest",
-    'target' => '/var/lib/tftpboot/bootimages/diag/memtest' },
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/6/os/x86_64/isolinux/memtest",
+    'target' => 'diag/memtest' },
 
-  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/vmlinuz",
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/vmlinuz' },
+  { 'source' => "#{node['data']['root']}/repo/os/Other/dban.bzi",
+    'target' => 'diag/dban.bzi' },
 
-  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/initrd.img",
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos6-x86_64/initrd.img' },
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/vmlinuz",
+    'target' => 'installers/centos6-x86_64/vmlinuz' },
 
-  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/vmlinuz",
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos7-x86_64/vmlinuz' },
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/initrd.img",
+    'target' => 'installers/centos6-x86_64/initrd.img' },
 
-  { 'source' => "#{node['repo']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/initrd.img",
-    'target' => '/var/lib/tftpboot/bootimages/installers/centos7-x86_64/initrd.img' }
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/vmlinuz",
+    'target' => 'installers/centos7-x86_64/vmlinuz' },
+
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/initrd.img",
+    'target' => 'installers/centos7-x86_64/initrd.img' }
 ]
-
-# KVM
-default['repo']['kvm']['storage'] = [
-  { 'name' => 'virt',
-    'path' => File.join(node['repo']['root'],'virt/storage') }
-]
-=end
