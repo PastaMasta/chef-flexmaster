@@ -3,10 +3,12 @@
 
 # User homedirs and docs
 <%= "#{File.join(node['data']['root'],'users')} *(sync,rw,sec=sys)"%>
-<%= "#{File.join(node['data']['root'],'docs')} base(sync,rw,sec=sys)"%>
+<% unless @desktop_hosts.nil? or @desktop_hosts.empty?%>
+<%= "#{File.join(node['data']['root'],'docs')} #{@desktop_hosts}"%>
+<% end %>
 
 # KVM exports
 <%= "#{File.join(node['data']['root'],'virt/isos')} *(sync,ro)"%>
-<% unless @kvm_hosts.empty? %>
+<% unless @kvm_hosts.nil? or @kvm_hosts.empty? %>
 <%= "#{File.join(node['data']['root'],'virt/central')} #{@kvm_hosts}"%>
 <% end %>
