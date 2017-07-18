@@ -83,3 +83,9 @@ execute "chown docs" do
   command "chown #{docs_user}:#{docs_user} #{File.join(node['data']['root'],'docs')}"
   not_if "[[ $(stat --format=%U:%G /data/docs) == '#{docs_user}:#{docs_user}' ]]"
 end
+
+repo_user = node['repo']['repo_user']
+execute "chown repo" do
+  command "chown #{repo_user}:#{repo_user} #{File.join(node['data']['root'],'repo')}"
+  not_if "[[ $(stat --format=%U:%G /data/docs) == '#{repo_user}:#{repo_user}' ]]"
+end

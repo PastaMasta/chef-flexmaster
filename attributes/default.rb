@@ -26,6 +26,7 @@ override['data']['layout'] = [
   'repo/software',
   'users'
 ]
+default['repo']['repo_user'] = 'repo'
 default['repo']['docs_user'] = 'sbt'
 =begin
 
