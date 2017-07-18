@@ -7,15 +7,13 @@
 #
 
 # Grab kickstarts
-git "#{node['repo']['root']}/repo/build/pxe-builds" do
+git "#{node['data']['root']}/repo/build/pxe-builds" do
   action :sync
-  repository "https://github.com/PastaMasta/pxe-builds.git"
+  repository node['repo']['pxebuild']['git']
 end
 
 # Setup tftp / pxeboot
-package 'tftp-server' do
-  action :install
-end
+package 'tftp-server'
 
 service 'tftp' do
   action :enable
@@ -26,21 +24,21 @@ directory '/var/lib/tftpboot/pxelinux.cfg' do
   action :create
 end
 
-[ 'default',
-  'diag',
-  'installers',
-  'other'
-].each do |menu|
+# Create files under pxelinux.cfg/ for every template
+# that would go in there.
+cb = run_context.cookbook_collection[cookbook_name]
+menus = cb.manifest['templates'].select {|a| a['path'].match(/pxelinux.cfg/)}.map {|b|b['name']}
+menus = menus.select {|a|a.match(/.erb$/)}.map {|a|a.sub(/.erb$/,'')}
+
+menus.each do |menu|
   template "/var/lib/tftpboot/pxelinux.cfg/#{menu}" do
-    source 'pxe/' + menu + '.erb'
+    source 'pxelinux.cfg/' + menu + '.erb'
     action :create
   end
 end
 
 # Setup pxe menu bootimages
-package 'syslinux' do
-  action :install
-end
+package 'syslinux'
 
 [ 'chain.c32',
   'mboot.c32',
@@ -54,21 +52,16 @@ end
   end
 end
 
-# Setup image dirs
-[ 'diag',
-  'installers',
-  'installers/centos6-x86_64',
-  'other'
-].each do |dir|
+node['repo']['bootimage_dirs'].each do |dir|
   directory File.join('/var/lib/tftpboot/bootimages/',dir) do
     recursive true
     action :create
   end
 end
 
-# Copy in images from mrepo if they exist (rsync may not have run yet)
+# Copy in images from if they exist (rsync may not have run yet)
 node['repo']['bootimages'].each do |bootimage|
-  remote_file bootimage['target'] do
+  remote_file File.join('/var/lib/tftpboot/bootimages',bootimage['target']) do
     source 'file://' + bootimage['source']
     action :create
   end if File.readable?(bootimage['source'])
