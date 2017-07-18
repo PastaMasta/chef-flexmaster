@@ -26,6 +26,7 @@ override['data']['layout'] = [
   'repo/software',
   'users'
 ]
+default['repo']['docs_user'] = 'sbt'
 =begin
 
 # User to own repo files

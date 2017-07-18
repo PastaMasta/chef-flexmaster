@@ -1,0 +1,27 @@
+[global]
+workgroup =  WORKGROUP
+netbiosname = <%= node['machinename'] %>
+
+log level = 1
+max log size = 50
+
+security = user
+map to guest = Bad User
+
+[docs]
+comment = doccument storage
+path = <%= "#{File.join(node['data']['root'],'docs')}"%>
+locking = yes
+guest ok = no
+public = no
+writeable = no
+write list = @docs
+
+[repo]
+comment = NAS
+path = <%= "#{File.join(node['data']['root'],'repo')}"%>
+locking = yes
+guest ok = yes
+public = yes
+writeable = no
+read only = yes

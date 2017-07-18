@@ -64,4 +64,22 @@ template "/etc/httpd/conf.d/repo.conf" do
   notifies :restart, 'service[httpd]', :immediately
 end
 
-# SELinux
+# Samba
+package 'samba'
+
+service 'smb' do
+  action [ :enable, :start ]
+end
+
+template "/etc/samba/smb.conf" do
+  source "samba/smb.conf.erb"
+  mode 0644
+  notifies :restart, 'service[smb]', :immediately
+end
+
+# Permissions and SELinux
+docs_user = node['repo']['docs_user']
+execute "chown docs" do
+  command "chown #{docs_user}:#{docs_user} #{File.join(node['data']['root'],'docs')}"
+  not_if "[[ $(stat --format=%U:%G /data/docs) == '#{docs_user}:#{docs_user}'}' ]]"
+end
