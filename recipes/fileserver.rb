@@ -81,5 +81,5 @@ end
 docs_user = node['repo']['docs_user']
 execute "chown docs" do
   command "chown #{docs_user}:#{docs_user} #{File.join(node['data']['root'],'docs')}"
-  not_if "[[ $(stat --format=%U:%G /data/docs) == '#{docs_user}:#{docs_user}'}' ]]"
+  not_if "[[ $(stat --format=%U:%G /data/docs) == '#{docs_user}:#{docs_user}' ]]"
 end
