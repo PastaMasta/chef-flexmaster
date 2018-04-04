@@ -22,18 +22,18 @@ end
 
 # Grab desktop hosts
 desktop_hosts = []
-File.read('/root/repo/desktops').split("\n").each do |host|
+node['repo']['chef-options']['desktops'].uniq.each do |host|
   next if host == node['master']
   desktop_hosts.push("#{host}(sync,rw,sec=sys)")
-end if File.exist?('/root/repo/desktops')
+end
 
 template "/etc/exports" do
   source "etc/exports.erb"
   mode 0644
   notifies :restart, 'service[nfs-server]', :immediately
   variables ({
-    :kvm_hosts => kvm_hosts.join(" ").strip,
-    :desktop_hosts => desktop_hosts.join(" ").strip
+    :kvm_hosts => kvm_hosts,
+    :desktop_hosts => desktop_hosts
   })
 end
 
