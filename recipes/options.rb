@@ -23,6 +23,8 @@ directory options_dir
     action :create_if_missing
   end
 
-  node.default['repo']['chef-options'][file] = File.readlines(filepath).reject {|a| a.match(/^#/)}.map(&:strip)
+  if File.exist?(filepath)
+    node.default['repo']['chef-options'][file] = File.readlines(filepath).reject {|a| a.match(/^#/)}.map(&:strip)
+  end
 
 end
