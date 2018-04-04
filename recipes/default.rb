@@ -10,6 +10,7 @@ return unless "#{node['platform']} #{node['platform_version']}".match(/centos 7/
 
 recipes = [
   'chef-base-dev::default',
+  cookbook_name + '::options',
   cookbook_name + '::fileserver',
   cookbook_name + '::buildserver',
   cookbook_name + '::firewall',
