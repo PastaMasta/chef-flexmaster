@@ -59,7 +59,7 @@ service 'httpd' do
 end
 
 template "/etc/httpd/conf.d/repo.conf" do
-  source "httpd/repo.conf.erb"
+  source "etc/httpd/repo.conf.erb"
   mode 0644
   notifies :restart, 'service[httpd]', :immediately
 end
