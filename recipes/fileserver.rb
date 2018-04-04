@@ -72,7 +72,7 @@ service 'smb' do
 end
 
 template "/etc/samba/smb.conf" do
-  source "samba/smb.conf.erb"
+  source "etc/samba/smb.conf.erb"
   mode 0644
   notifies :restart, 'service[smb]', :immediately
 end
