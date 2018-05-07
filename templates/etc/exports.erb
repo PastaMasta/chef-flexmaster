@@ -5,7 +5,7 @@
 <%= "#{File.join(node['data']['root'],'users')} *(sync,rw,sec=sys)"%>
 <% unless @desktop_hosts.nil? or @desktop_hosts.empty?%>
 <% @desktop_hosts.each do |host| %>
-<%= "#{File.join(node['data']['root'],'docs')} #{host}"%>
+<%= "#{File.join(node['data']['root'],'docs')} #{host}(sync,rw,sec=sys)"%>
 <% end %>
 <% end %>
 
@@ -13,6 +13,6 @@
 <%= "#{File.join(node['data']['root'],'virt/isos')} *(sync,ro)"%>
 <% unless @kvm_hosts.nil? or @kvm_hosts.empty? %>
 <% @kvm_hosts.each do |kvm_host|%>
-<%= "#{File.join(node['data']['root'],'virt/central')} #{@kvm_host}"%>
+<%= "#{File.join(node['data']['root'],'virt/central')} #{kvm_host}(sync,rw,sec=sys)"%>
 <% end %>
 <% end %>

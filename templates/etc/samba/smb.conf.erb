@@ -1,8 +1,8 @@
 [global]
 workgroup =  WORKGROUP
 netbiosname = <%= node['machinename'] %>
-
 log level = 1
+log file = /var/log/samba/%m.log
 max log size = 50
 
 security = user
@@ -15,7 +15,8 @@ locking = yes
 guest ok = no
 public = no
 writeable = no
-write list = @docs
+write list = @<%=node['repo']['docs_group']%>
+hosts allow = <%=@desktop_hosts.join(" ")%>
 
 [repo]
 comment = NAS
@@ -25,3 +26,15 @@ guest ok = yes
 public = yes
 writeable = no
 read only = yes
+
+<% unless @backup_hosts.nil? or @backup_hosts.empty? %>
+<%="[backups]"%>
+comment = Backups for windows hosts
+path = <%= "#{File.join(node['data']['root'],'backup/local')}"%>
+locking = yes
+guest ok = no
+public = no
+writeable = no
+write list = @<%=node['repo']['backup_group']%>
+hosts allow = <%=@backup_hosts.join(" ")%>
+<% end %>
