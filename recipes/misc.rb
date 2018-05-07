@@ -7,10 +7,6 @@
 #
 
 # Repo sync stuff
-package 'createrepo' do
-  action :install
-end
-
 template "/root/repo-sync.exclude" do
   source "repo-sync.exclude"
 end

@@ -27,6 +27,24 @@ override['data']['layout'] = [
   'users'
 ]
 
+#
+# Packages
+#
+# Build server
+default['base']['packages'] << %w(
+  tftp-server
+  syslinux
+)
+# Fileserver
+default['base']['packages'] << %w(
+  nfs-utils
+  httpd
+  samba
+)
+# Misc
+default['base']['packages'] << %w(
+  createrepo
+)
 
 default['base']['users'] = {
   'repo' => { 'uid'=>2000,'home'=>'/data/repo','shell'=>'/sbin/nologin' }

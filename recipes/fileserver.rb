@@ -7,8 +7,6 @@
 #
 
 # nfs
-package 'nfs-utils'
-
 service 'nfs-server' do
   action [ :enable, :start ]
 end
@@ -37,9 +35,7 @@ template "/etc/exports" do
   })
 end
 
-# Http
-package 'httpd'
-
+# http
 link '/var/www/repo' do
   action :create
   to "#{node['data']['root']}/repo"
@@ -65,7 +61,6 @@ template "/etc/httpd/conf.d/repo.conf" do
 end
 
 # Samba
-package 'samba'
 
 service 'smb' do
   action [ :enable, :start ]

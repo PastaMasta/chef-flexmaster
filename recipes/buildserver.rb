@@ -12,9 +12,6 @@ git "#{node['data']['root']}/repo/build/pxe-builds" do
   repository node['repo']['pxebuild']['git']
 end
 
-# Setup tftp / pxeboot
-package 'tftp-server'
-
 service 'tftp' do
   action :enable
 end
@@ -38,8 +35,6 @@ menus.each do |menu|
 end
 
 # Setup pxe menu bootimages
-package 'syslinux'
-
 [ 'chain.c32',
   'mboot.c32',
   'memdisk',
