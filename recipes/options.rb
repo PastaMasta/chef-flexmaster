@@ -24,7 +24,7 @@ directory options_dir
   end
 
   if File.exist?(filepath)
-    node.default['repo']['chef-options'][file] = File.readlines(filepath).reject {|a| a.match(/^#/)}.map(&:strip)
+    node.default['repo']['chef-options'][file] = File.readlines(filepath).reject {|a| a.match(/^#/)}.map(&:strip).uniq.reject{|a| a.nil? or a.empty?}
   end
 
 end
