@@ -21,32 +21,33 @@ directory '/var/lib/tftpboot/pxelinux.cfg' do
   action :create
 end
 
-# Create files under pxelinux.cfg/ for every template
-# that would go in there.
-cb = run_context.cookbook_collection[cookbook_name]
-menus = cb.manifest['templates'].select {|a| a['path'].match(/pxelinux.cfg/)}.map {|b|b['name']}
-menus = menus.select {|a|a.match(/.erb$/)}.map {|a|a.sub(/.erb$/,'')}
-
-menus.each do |menu|
-  template "/var/lib/tftpboot/pxelinux.cfg/#{menu}" do
-    source 'pxelinux.cfg/' + menu + '.erb'
+%w(
+  default
+  diag
+  installers
+  other
+).each do |menu|
+  template '/var/lib/tftpboot/pxelinux.cfg/' + menu do
+    source 'var/lib/tftpboot/pxelinux.cfg/' + menu + '.erb'
     action :create
   end
 end
 
-# Setup pxe menu bootimages
-[ 'chain.c32',
-  'mboot.c32',
-  'memdisk',
-  'menu.c32',
-  'pxelinux.0'
-].each do |file|
+# Setup bootimages
+%w(
+  chain.c32
+  mboot.c32
+  memdisk
+  menu.c32
+  pxelinux.0
+).each do |file|
   remote_file File.join('/var/lib/tftpboot/',file) do
     source 'file://' + File.join('/usr/share/syslinux/',file)
     action :create
   end
 end
 
+# Copy in OS boot images if they exist (rsync may not have run yet)
 node['repo']['bootimage_dirs'].each do |dir|
   directory File.join('/var/lib/tftpboot/bootimages/',dir) do
     recursive true
@@ -54,7 +55,6 @@ node['repo']['bootimage_dirs'].each do |dir|
   end
 end
 
-# Copy in images from if they exist (rsync may not have run yet)
 node['repo']['bootimages'].each do |bootimage|
   remote_file File.join('/var/lib/tftpboot/bootimages',bootimage['target']) do
     source 'file://' + bootimage['source']

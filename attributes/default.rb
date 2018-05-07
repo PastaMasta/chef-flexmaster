@@ -27,29 +27,12 @@ override['data']['layout'] = [
   'users'
 ]
 
-#
-# Packages
-#
-# Build server
-default['base']['packages'] << %w(
-  tftp-server
-  syslinux
-)
-# Fileserver
-default['base']['packages'] << %w(
-  nfs-utils
-  httpd
-  samba
-)
-# Misc
-default['base']['packages'] << %w(
-  createrepo
-)
-
-# Simple config options
+# Simple config options dir
 default['repo']['chef-options']['dir'] = '/root/chef-options'
 
+#
 # Main users and groups
+#
 default['base']['users'] = {
   'repo' => { 'uid'=>2000,'home'=>'/data/repo','shell'=>'/sbin/nologin' }
 }
@@ -61,3 +44,58 @@ default['repo']['repo_user'] = 'repo'
 default['repo']['docs_group'] = 'docs'
 default['repo']['backup_group'] = 'backups'
 
+#
+# Fileserver
+#
+default['base']['packages'] << %w(
+  nfs-utils
+  httpd
+  samba
+)
+
+#
+# Buildserver
+#
+default['base']['packages'] << %w(
+  xinetd
+  tftp-server
+  syslinux
+)
+# Build server kickstarts
+default['repo']['pxebuild']['git'] = 'https://github.com/PastaMasta/pxe-builds.git'
+
+# tftp bootimages
+default['repo']['bootimage_dirs'] = %w(
+  diag
+  installers
+  installers/centos7-x86_64
+  installers/centos6-x86_64
+  other
+)
+
+default['repo']['bootimages'] = [
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/6/os/x86_64/isolinux/memtest",
+    'target' => 'diag/memtest' },
+
+  { 'source' => "#{node['data']['root']}/repo/os/Other/dban.bzi",
+    'target' => 'other/DBAN.BZI' },
+
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/vmlinuz",
+    'target' => 'installers/centos6-x86_64/vmlinuz' },
+
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/6/os/x86_64/images/pxeboot/initrd.img",
+    'target' => 'installers/centos6-x86_64/initrd.img' },
+
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/vmlinuz",
+    'target' => 'installers/centos7-x86_64/vmlinuz' },
+
+  { 'source' => "#{node['data']['root']}/repo/os/CentOS/7/os/x86_64/images/pxeboot/initrd.img",
+    'target' => 'installers/centos7-x86_64/initrd.img' }
+]
+
+#
+# Misc
+#
+default['base']['packages'] << %w(
+  createrepo
+)
