@@ -46,14 +46,18 @@ default['base']['packages'] << %w(
   createrepo
 )
 
+# Simple config options
+default['repo']['chef-options']['dir'] = '/root/chef-options'
+
+# Main users and groups
 default['base']['users'] = {
   'repo' => { 'uid'=>2000,'home'=>'/data/repo','shell'=>'/sbin/nologin' }
 }
 default['base']['groups'] = {
-  'docs' => { 'gid'=>3000,'members'=> [] }
+  'docs' => { 'gid'=>3000,'members'=> %w(repo) },
+  'backups' => { 'gid'=>3001,'members'=> %w(repo) }
 }
-
 default['repo']['repo_user'] = 'repo'
-default['repo']['docs_user'] = 'sbt'
+default['repo']['docs_group'] = 'docs'
+default['repo']['backup_group'] = 'backups'
 
-default['repo']['chef-options']['dir'] = '/root/chef-options'
