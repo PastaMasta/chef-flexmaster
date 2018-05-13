@@ -25,6 +25,7 @@ locking = yes
 guest ok = yes
 public = yes
 writeable = no
+write list = @<%=node['repo']['docs_group']%>
 read only = yes
 
 <% unless @backup_hosts.nil? or @backup_hosts.empty? %>

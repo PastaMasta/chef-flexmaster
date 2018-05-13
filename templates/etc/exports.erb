@@ -5,6 +5,7 @@
 <%= "#{File.join(node['data']['root'],'users')} *(sync,rw,sec=sys)"%>
 <% unless @desktop_hosts.nil? or @desktop_hosts.empty?%>
 <% @desktop_hosts.each do |host| %>
+<%= "#{File.join(node['data']['root'],'repo')} #{host}(sync,rw,sec=sys)"%>
 <%= "#{File.join(node['data']['root'],'docs')} #{host}(sync,rw,sec=sys)"%>
 <% end %>
 <% end %>
