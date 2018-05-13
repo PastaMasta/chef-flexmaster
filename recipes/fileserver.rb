@@ -89,7 +89,7 @@ end
 backup_group = node['repo']['backup_group']
 execute "chown backups" do
   command "chgrp #{backup_group} #{File.join(node['data']['root'],'backup/local')}"
-  not_if "[[ $(stat --format=%G #{File.join(node['data']['root'],'docs')}) == #{backup_group} ]]"
+  not_if "[[ $(stat --format=%G #{File.join(node['data']['root'],'backup/local')}) == #{backup_group} ]]"
 end
 directory File.join(node['data']['root'],'backup/local') do
    mode 0775
