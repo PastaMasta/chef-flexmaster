@@ -3,11 +3,21 @@
 # Cookbook Name:: chef-master
 # Recipe:: firewall
 #
-# Copyright 2017, PastaMasta
+# Copyright 2018, PastaMasta
 #
 
-template '/etc/firewalld/zones/master-internal.xml' do
-  action :create
-  source 'firewalld/master-internal.xml.erb'
-  notifies :reload, 'service[firewalld]',:immediately
+service 'firewalld' do
+  action :nothing
+end
+
+%w(
+  http
+  samba
+  nfs
+).each do |service|
+  execute "firewall service: #{service}" do
+    command "firewall-cmd --permanent --add-service=#{service} --zone=internal"
+    not_if "fireall-cmd --list-services --zone=internal | grep #{service}"
+    notifies :reload, 'service[firewalld]',:delayed
+  end
 end
