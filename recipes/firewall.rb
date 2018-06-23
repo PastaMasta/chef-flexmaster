@@ -17,7 +17,7 @@ end
 ).each do |service|
   execute "firewall service: #{service}" do
     command "firewall-cmd --permanent --add-service=#{service} --zone=internal"
-    not_if "fireall-cmd --list-services --zone=internal | grep #{service}"
+    not_if "firewall-cmd --list-services --zone=internal | grep #{service}"
     notifies :reload, 'service[firewalld]',:delayed
   end
 end
