@@ -1,1 +1,2 @@
+# This file is managed by Chef, changes will be lost!
 0 0 * * * /root/repo-sync.sh >/dev/null 2>&1
