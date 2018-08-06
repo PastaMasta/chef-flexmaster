@@ -34,7 +34,7 @@ default['repo']['chef-options']['dir'] = '/root/chef-options'
 # Main users and groups
 #
 default['base']['users'] = {
-  'repo' => { 'uid'=>2000,'home'=>'/data/repo','shell'=>'/sbin/nologin' }
+  'repo' => { 'uid'=>2000,'home'=>'/data/users/repo','shell'=>'/sbin/nologin' }
 }
 default['base']['groups'] = {
   'docs' => { 'gid'=>3000,'members'=> %w(repo) },
