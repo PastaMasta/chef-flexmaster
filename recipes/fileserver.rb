@@ -9,7 +9,7 @@
 # Grab host options
 backup_hosts  = node['repo']['chef-options']['backups']
 desktop_hosts = node['repo']['chef-options']['desktops']
-kvm_hosts = search(:node, 'recipes:"chef-base-dev\:\:kvm"').map {|a|a.name}
+kvm_hosts = search(:node, 'recipes:"chef-base\:\:kvm"').map {|a|a.name}
 
 #
 # nfs
