@@ -14,7 +14,8 @@ recipes = [
   cookbook_name + '::options',
   cookbook_name + '::fileserver',
   cookbook_name + '::buildserver',
-  cookbook_name + '::firewall'
+  cookbook_name + '::firewall',
+  cookbook_name + '::misc'
 ]
 
 include_recipe(recipes)
