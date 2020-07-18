@@ -1,20 +1,20 @@
 # This file is managed by Chef, changes will be lost!
 # Public repo
-<%= "#{File.join(node['data']['root'],'repo')} *(sync,ro)"%>
+<%= "#{File.join(node['data']['root'],'repo')} *(sync,ro,crossmnt)"%>
 
 # User homedirs and docs
-<%= "#{File.join(node['data']['root'],'users')} *(sync,rw,sec=sys)"%>
+<%= "#{File.join(node['data']['root'],'users')} *(sync,rw,sec=sys,crossmnt)"%>
 <% unless @desktop_hosts.nil? or @desktop_hosts.empty?%>
 <% @desktop_hosts.each do |host| %>
-<%= "#{File.join(node['data']['root'],'repo')} #{host}(sync,rw,sec=sys)"%>
-<%= "#{File.join(node['data']['root'],'docs')} #{host}(sync,rw,sec=sys)"%>
+<%= "#{File.join(node['data']['root'],'repo')} #{host}(sync,rw,sec=sys,crossmnt)"%>
+<%= "#{File.join(node['data']['root'],'docs')} #{host}(sync,rw,sec=sys,crossmnt)"%>
 <% end %>
 <% end %>
 
 # KVM exports
-<%= "#{File.join(node['data']['root'],'virt/isos')} *(sync,ro)"%>
+<%= "#{File.join(node['data']['root'],'virt/isos')} *(sync,ro,crossmnt)"%>
 <% unless @kvm_hosts.nil? or @kvm_hosts.empty? %>
 <% @kvm_hosts.each do |kvm_host|%>
-<%= "#{File.join(node['data']['root'],'virt/central')} #{kvm_host}(sync,rw,sec=sys)"%>
+<%= "#{File.join(node['data']['root'],'virt/central')} #{kvm_host}(sync,rw,sec=sys,crossmnt)"%>
 <% end %>
 <% end %>

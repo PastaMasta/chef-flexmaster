@@ -8,21 +8,15 @@
 
 exclude_file='/root/repo-sync.exclude'
 
-centos6_remote="rsync://rsync.mirrorservice.org/mirror.centos.org/6*"
-centos6_local="<%=node['repo']['root']%>/repo/os/CentOS/"
-rsync -aSPvm --include='6**/' --include='7**/' --progress --safe-links --delete --exclude-from=${exclude_file} ${centos6_remote} ${centos6_local}
-
-centos7_remote="rsync://rsync.mirrorservice.org/mirror.centos.org/7*"
-centos7_local="<%=node['repo']['root']%>/repo/os/CentOS/"
-rsync -aSPvm --include='7**/' --progress --safe-links --delete --exclude-from=${exclude_file} ${centos7_remote} ${centos7_local}
-
-repodir="<%=node['repo']['root']%>/repo/software"
+# Create rpm repo for any of my junk
+repodir="<%=node['data']['root']%>/repo/software"
 createrepo --update ${repodir}
 
 # Find all isos and symlink
-cd "<%=node['repo']['root']%>/repo/os/isos"
-find "<%=node['repo']['root']%>/repo/os" -xdev -name "*.iso" -type f -exec ln -f {} \;
+cd "<%=node['data']['root']%>/repo/os/isos"
+find "<%=node['data']['root']%>/repo/os" -xdev -name "*.iso" -type f -exec ln -f {} \;
 
-chown -h -R <%=node['repo']['user']['name'] + ':' + node['repo']['user']['name']%> <%=node['repo']['root']%>/repo
+# Correct perms
+find <%=node['data']['root']%>/repo -xdev \! -user repo -o \! -group repo -exec chown -h repo:repo {} \;
 
 exit $?
