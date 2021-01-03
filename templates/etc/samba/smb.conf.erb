@@ -5,6 +5,10 @@ netbiosname = <%= node['machinename'] %>
 log level = 1
 log file = /var/log/samba/%m.log
 max log size = 50
+create mask = 700
+force create mode = 775
+directory mask = 700
+force directory mode = 775
 
 security = user
 map to guest = Bad User
